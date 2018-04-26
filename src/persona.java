@@ -3,9 +3,11 @@ import conexion.Conexion;
 import javax.swing.JOptionPane;
 import org.omg.CORBA.ORB;
 
+
 public class persona extends PersonaApp.personaPOA { 
 
     private ORB orb;
+    Conexion conex =new Conexion();
     
     @Override
     public boolean insertarpersona(int id, String nombre, String apellido, String direccion) {
@@ -14,13 +16,25 @@ public class persona extends PersonaApp.personaPOA {
        try {
            String query="insert into persona(id,nombre,apellido,direccion)"
                    + "values ("+id+","+apellido+","+direccion+","+nombre+")";
+           
+           conex.conexion();
+           Statement st = conex.conex.createStatement();
+           int valor=st.executeUpdate(query);
+           if (valor > 0) {
+               resultado=true;
+           }
+           //cerramos los recursos.
+           
+           st.close();
+           conex.conex.close();
        }
        catch (Exception e) {
-           JOptionPane.shwMessageDialog(null, "Ocurrio un error "+e.getMessage());
+           JOptionPane.showMessageDialog(null, "Ocurrio un error "+e.getMessage());
        }
       return resultado;
        }
-    }
+    
+    
 
     @Override
     public String consultarpersona(int id) {
