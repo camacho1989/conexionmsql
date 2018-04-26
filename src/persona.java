@@ -10,12 +10,12 @@ public class persona extends PersonaApp.personaPOA {
     Conexion conex =new Conexion();
     
     @Override
-    public boolean insertarpersona(int id, String nombre, String apellido, String direccion) {
+    public boolean insertarpersona(int id, String nombre, String apellidos, String direccion) {
        boolean resultado= false;
        
        try {
            String query="insert into persona(id,nombre,apellido,direccion)"
-                   + "values ("+id+","+apellido+","+direccion+","+nombre+")";
+                   + "values ('"+id+" ','"+apellidos+" ','"+direccion+"','"+nombre+"')";
            
            conex.conexion();
            Statement st = conex.conex.createStatement();

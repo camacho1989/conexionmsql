@@ -8,12 +8,12 @@
  *
  * @author DIEGO CAMACHO
  */
-public class PersonaFrm extends javax.swing.JPanel {
+public class PersonaFrm1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form PersonaFrm
+     * Creates new form PersonaFrm1
      */
-    public PersonaFrm() {
+    public PersonaFrm1() {
         initComponents();
     }
 
@@ -26,6 +26,7 @@ public class PersonaFrm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnguard = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
@@ -35,7 +36,15 @@ public class PersonaFrm extends javax.swing.JPanel {
         txtapell = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtdir = new javax.swing.JTextField();
-        btnguard = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnguard.setText("GUARDAR");
+        btnguard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("PERSONA");
@@ -48,15 +57,8 @@ public class PersonaFrm extends javax.swing.JPanel {
 
         jLabel5.setText("DIRECCION:");
 
-        btnguard.setText("GUARDAR");
-        btnguard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnguardActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -113,13 +115,49 @@ public class PersonaFrm extends javax.swing.JPanel {
                 .addComponent(btnguard)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnguardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardActionPerformed
         persona per= new persona();
-       per.insertarpersona(Integer.parseInt(txtid.getText()), txtnomb.getText(), txtapell.getText(),txtdir.getText() );
+        per.insertarpersona(Integer.parseInt(txtid.getText()), txtnomb.getText(), txtapell.getText(),txtdir.getText() );
     }//GEN-LAST:event_btnguardActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PersonaFrm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PersonaFrm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PersonaFrm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PersonaFrm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PersonaFrm1().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnguard;
