@@ -14,18 +14,17 @@ public class persona extends PersonaApp.personaPOA {
        boolean resultado= false;
        
        try {
-           String query="insert into persona(id,nombre,apellido,direccion)"
+           String query="insert into persona(id,nombre,apellidos,direccion)"
                    + "values ('"+id+" ','"+apellidos+" ','"+direccion+"','"+nombre+"')";
            
            conex.conexion();
-           Statement st = conex.conex.createStatement();
-           int valor=st.executeUpdate(query);
-           if (valor > 0) {
-               resultado=true;
+           try (Statement st = conex.conex.createStatement()) {
+               int valor=st.executeUpdate(query);
+               if (valor > 0) {
+                   resultado=true;
+               }
+               //cerramos los recursos.
            }
-           //cerramos los recursos.
-           
-           st.close();
            conex.conex.close();
        }
        catch (Exception e) {
@@ -38,7 +37,26 @@ public class persona extends PersonaApp.personaPOA {
 
     @Override
     public String consultarpersona(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                String resultado= "";
+        try {
+            String query = "select * from persona WHERE id=" + id;
+            conex.conexion();
+            ResultSet rs;
+            try (Statement st = conex.conex.createStatement()) {
+                rs = st.executeQuery(query);
+                while (rs.next()){
+                    
+                    resultado+= rs.getLong(1)+ "_" + rs.getString(4)+ "_" + rs.getString(2)+ "_" +rs.getString(3)+ "\n";{           
+                }
+
+                }   }
+             rs.close();
+             conex.conex.close();            
+           
+        } catch (Exception e) { 
+            JOptionPane.showMessageDialog(null, "ocurrio un error"+e.getLocalizedMessage());
+        }
+        return resultado;
     }
 
     @Override
@@ -53,13 +71,39 @@ public class persona extends PersonaApp.personaPOA {
 
     @Override
     public String listarpersona() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String resultado= "";
+        try {
+            String query = "select * from persona";
+            conex.conexion();
+            ResultSet rs;
+            try (Statement st = conex.conex.createStatement()) {
+                rs = st.executeQuery(query);
+                while (rs.next()){
+                    
+                    resultado+= rs.getLong(1)+ "_" + rs.getString(4)+ "_" + rs.getString(2)+ "_" +rs.getString(3)+ "\n";{
+                    
+                }
+                    //cerramos los recursos.
+                    
+                }   }
+             rs.close();
+             conex.conex.close();            
+           
+        } catch (Exception e) { 
+            JOptionPane.showMessageDialog(null, "ocurrio un error"+e.getLocalizedMessage());
+        }
+        return resultado;
     }
 
     @Override
     public void shutdown() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    void consultarpersona(int parseInt, String text, String text0, String text1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
    
 }
+
