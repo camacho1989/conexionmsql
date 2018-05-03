@@ -61,12 +61,54 @@ public class persona extends PersonaApp.personaPOA {
 
     @Override
     public boolean eliminarpersona(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       boolean resultado= false;
+       
+       try {
+           String query= "DELETE from persona where id='"+id+"'";
+           
+           conex.conexion();
+           try (Statement st = conex.conex.createStatement()) {
+               int valor=st.executeUpdate(query);
+               if (valor > 0) {
+                   resultado=true;
+               }
+               //cerramos los recursos.
+           }
+           conex.conex.close();
+       }
+       catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "Ocurrio un error "+e.getMessage());
+       }
+      return resultado;
+      
+        
+       
     }
 
     @Override
-    public boolean actualizarpersona() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean actualizarpersona(int id, String nombre, String apellidos, String direccion) {
+       boolean resultado= false;
+       
+       try {
+           String query= "UPDATE persona set nombre= '"+nombre+"', apellidos='"+apellidos+"', direccion='"+direccion+"' WHERE id='"+id+"'";
+           
+           conex.conexion();
+           try (Statement st = conex.conex.createStatement()) {
+               int valor=st.executeUpdate(query);
+               if (valor > 0) {
+                   resultado=true;
+               }
+               //cerramos los recursos.
+           }
+           conex.conex.close();
+       }
+       catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "Ocurrio un error "+e.getMessage());
+       }
+      return resultado;
+      
+        
+       
     }
 
     @Override
@@ -101,6 +143,14 @@ public class persona extends PersonaApp.personaPOA {
     }
 
     void consultarpersona(int parseInt, String text, String text0, String text1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void eliminarpersona(int parseInt, String text, String text0, String text1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    String actualizarpersona(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
